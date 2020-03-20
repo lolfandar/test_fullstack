@@ -10,8 +10,8 @@
 #### Consignes
 1. Etant donné que c'est un projet fullstack, il est conseillé de travailler sur les 2 projets en même temps
 2. Seule la fonctionnalité pour s'inscrire fonctionne dans le frontend. Elle vous permettra de visualiser la page home
-3. N'oublier pas de lancer le backend sinon Le frontend ne renverra que des erreur 500
-4. Les instructions pour démarrer chaques projets sont accessibles dans les README.me ci-dessous
+3. N'oubliez pas de lancer le backend sinon le frontend ne renverra que des erreurs 500
+4. Les instructions pour démarrer chaque projets sont accessibles dans les README.me ci-dessous
 
 [Backend](application)  
 [Frontend](application-front)
