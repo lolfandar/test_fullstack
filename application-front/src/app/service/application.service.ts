@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user.model';
+import {Project} from '../model/project.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +34,13 @@ export class ApplicationService {
    * TODO Implémenter les requêtes pour la sauvegarde et le chargement des projets
    * -> Il faut s'inspirer des fonctions ci-dessus
    */
-  saveProject(name: string, amount: int, description: string, ownerUsername: string): Observable<Project> {
+  saveProject(name: string, amount: number, description: string, ownerUsername: string): Observable<Project> {
      const url = this.baseUrl + '/saveProject';
      return this.http.post<Project>(url, { name, amount, description, ownerUsername }, this.httpOptions);
    }
-  getProjects(ownerUsername: string): Observable<List<Project>> {
+  getProjects(ownerUsername: string): Observable<Array<Project>> {
     const url = this.baseUrl  + '/getProjects?ownerUsername=' + ownerUsername;
-    return this.http.get<List<Project>>(url, this.httpOptions);
+    return this.http.get<Array<Project>>(url, this.httpOptions);
   }
 
 }
