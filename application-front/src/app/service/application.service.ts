@@ -33,7 +33,13 @@ export class ApplicationService {
    * TODO Implémenter les requêtes pour la sauvegarde et le chargement des projets
    * -> Il faut s'inspirer des fonctions ci-dessus
    */
-  saveProject() { }
-  getProjects() { }
+  saveProject(name: string, amount: int, description: string, ownerUsername: string): Observable<Project> {
+     const url = this.baseUrl + '/saveProject';
+     return this.http.post<Project>(url, { name, amount, description, ownerUsername }, this.httpOptions);
+   }
+  getProjects(ownerUsername: string): Observable<List<Project>> {
+    const url = this.baseUrl  + '/getProjects?ownerUsername=' + ownerUsername;
+    return this.http.get<List<Project>>(url, this.httpOptions);
+  }
 
 }

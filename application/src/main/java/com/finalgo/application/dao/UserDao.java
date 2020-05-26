@@ -1,7 +1,10 @@
 package com.finalgo.application.dao;
 
 import com.finalgo.application.entity.User;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.NoResultException;
 
 @Service
 public class UserDao extends AbstractGenericDao<User> {
@@ -19,7 +22,11 @@ public class UserDao extends AbstractGenericDao<User> {
      * TODO Implémenter la requête Hibernate/SQL
      */
     public User findWithCredentials(String username, String password) {
-        String query = "";
-        return createOneItemSelectQuery(query);
+        User user = findByField("username", username);
+        if(user != null && user.getPassword().equals(password)){
+            return user;
+        } else {
+            return null;
+        }
     }
 }

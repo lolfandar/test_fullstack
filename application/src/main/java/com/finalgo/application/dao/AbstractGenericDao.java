@@ -1,5 +1,6 @@
 package com.finalgo.application.dao;
 
+import com.finalgo.application.entity.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -37,10 +38,9 @@ public abstract class AbstractGenericDao<T extends Serializable> {
         return getCurrentSession().createQuery("from " + clazz.getName()).list();
     }
 
-    public T createOneItemSelectQuery(String query) {
+    public T createOneItemSelectQuery(Query query) {
         try {
-            Query nativeQuery = getCurrentSession().createQuery(query);
-            return (T) nativeQuery.getSingleResult();
+            return (T) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
@@ -71,5 +71,11 @@ public abstract class AbstractGenericDao<T extends Serializable> {
 
     protected Session getCurrentSession() {
         return entityManager.unwrap(Session.class);
+    }
+
+    public T findByField(String field, String value){
+        Query query = getCurrentSession().createQuery("from " + clazz.getName() +" c where c."+ field + " = :"+field);
+        query.setParameter(field, value);
+        return createOneItemSelectQuery(query);
     }
 }

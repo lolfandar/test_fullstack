@@ -36,6 +36,8 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['/home']);
       Swal.fire('Connexion réussie', 'Vous êtes à présent connecté', 'success');
+    }, (error) => {
+      Swal.fire('Erreur', 'Le login ou le mot de passe est incorrect','error')
     });
   }
 
